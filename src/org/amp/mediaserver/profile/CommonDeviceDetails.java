@@ -11,8 +11,8 @@ public class CommonDeviceDetails extends DeviceDetails {
 	public CommonDeviceDetails() {	
 		super(
 				"AMP: Mediaserver",
-				new ManufacturerDetails("SmallGain", "https://github.com/edhaase"),	// This seems to be important?
-				new ModelDetails("Digital Media Server", null, "1.0", URI.create("http://appletmediaproject.com")),
+				new ManufacturerDetails("edhaase", "https://github.com/edhaase"),	// This seems to be important?
+				new ModelDetails("Digital Media Server", null, "1.0", URI.create("http://edhaase.github.io/appletmediaproject/")),
 				"{" + UUID.randomUUID().toString().toUpperCase() + "}",
 				null,
 				null, null );		
