@@ -1,7 +1,6 @@
 package org.amp.mediaserver.contentdirectory.structure;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -10,7 +9,6 @@ import java.util.UUID;
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 import org.amp.mediaserver.FileExtension;
 import org.amp.mediaserver.support.AvailabilityChangeListener;
@@ -113,7 +111,7 @@ public class AudioContainer extends ContainerTemplate implements AvailabilityCha
 				res.setSampleFrequency((long) f.getSampleRate());
 				res.setNrAudioChannels((long) f.getChannels());
 				res.setBitsPerSample((long) f.getSampleSizeInBits());
-			} catch (UnsupportedAudioFileException | IOException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

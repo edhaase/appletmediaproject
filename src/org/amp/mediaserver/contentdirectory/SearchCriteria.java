@@ -150,6 +150,14 @@ public abstract class SearchCriteria implements Predicate {
 			}
 			
 			// // ‘=’ | ‘!=’ | ‘<’ | ‘<=’ | ‘>’ | ‘>=’
+			if(op.equals("!=")) return new LogicalNOT( new PropertyEquality(PropertyRetriever.find(matcher.group(1)), value) );
+			if(op.equals("=")) return new PropertyEquality(PropertyRetriever.find(matcher.group(1)), value);
+			if(op.equals("<") || op.equals("<=") || op.equals(">") || op.equals(">=") ) {
+				throw new ContentDirectoryException( ContentDirectoryService.UNSUPPORTED_SEARCH_CRITERIA,
+						 "Unsupported or invalid search criteria."); 
+			}
+			
+			/*
 			switch( op.toLowerCase() ) {
 				case "!=":
 					return new LogicalNOT( new PropertyEquality(PropertyRetriever.find(matcher.group(1)), value) );
@@ -162,7 +170,7 @@ public abstract class SearchCriteria implements Predicate {
 					// We can't handle this right now.
 					throw new ContentDirectoryException( ContentDirectoryService.UNSUPPORTED_SEARCH_CRITERIA,
 														 "Unsupported or invalid search criteria."); 
-			}		
+			}	*/	
 			
 		} catch(ContentDirectoryException c) {
 			throw c;

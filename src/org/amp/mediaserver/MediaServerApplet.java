@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.AccessControlException;
-import java.util.concurrent.ExecutionException;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
@@ -72,7 +71,11 @@ public class MediaServerApplet extends JApplet {
 				LogManager.getLogManager().readConfiguration( MediaServerApplet.class.getResourceAsStream("/logging.properties") );	
 			}
 			Logger.getLogger("").addHandler(new SystemLogHandler());	
-		} catch (SecurityException | IOException e2) {
+		} catch (SecurityException e) {
+			e.printStackTrace();
+			onError();
+			return;
+		} catch(IOException e2) {
 			e2.printStackTrace();
 			onError();
 			return;
@@ -100,9 +103,8 @@ public class MediaServerApplet extends JApplet {
 				
 				try {
 					result = get();
-				} catch (InterruptedException | ExecutionException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 				
 				

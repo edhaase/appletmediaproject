@@ -34,10 +34,10 @@ public enum PropertyRetriever {
 
 		try {			
 			member = base.getMethod(methodName);
-		} catch(NoSuchMethodException | SecurityException e) {
+		} catch(Exception e) {
 			try {
 				member = base.getField(methodName);
-			} catch (NoSuchFieldException | SecurityException f) {
+			} catch (Exception f) {
 				System.err.println(getClass().getName() + ":  " + base.getName() + "(" + methodName + ")" + ": Nothing by this name");
 			}	
 		}
